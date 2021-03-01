@@ -2,9 +2,10 @@ package com.app.simpleapp.simpleapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class SimpleAppApplication {
+public class SimpleAppApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleAppApplication.class, args);
