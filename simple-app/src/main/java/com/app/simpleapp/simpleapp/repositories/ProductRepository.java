@@ -12,6 +12,7 @@ public class ProductRepository {
     List<Product> productList = new ArrayList<>();
 
     public void addProducts() {
+        productList.clear();
         Product p1 = new Product();
         p1.setId(1l);
         p1.setName("Product1");
