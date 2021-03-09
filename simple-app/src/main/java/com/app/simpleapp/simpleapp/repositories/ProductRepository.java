@@ -17,7 +17,14 @@ public class ProductRepository {
         p1.setName("Product1");
         p1.setDescription("This is product1");
         p1.setPrice(BigInteger.valueOf(245));
+
+        Product p2 = new Product();
+        p2.setId(2l);
+        p2.setName("product2");
+        p2.setDescription("This is product2");
+        p2.setPrice(BigInteger.valueOf(89));
         productList.add(p1);
+        productList.add(p2);
     }
 
     public List<Product> getProducts() {
