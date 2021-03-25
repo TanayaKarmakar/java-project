@@ -1,6 +1,6 @@
-package com.app.emp.domain;
+package com.app.emp.common.request;
 
-public class Order {
+public class OrderRequest {
     private Long orderId;
     private Long productId;
     private Integer qty;

@@ -1,11 +1,11 @@
 package com.app.emp.services;
 
-import com.app.emp.domain.Employee;
+import com.app.emp.entity.EmployeeEntity;
 
 import java.util.List;
 
 public interface EmployeeService {
-    public List<Employee> getAll();
+    public List<EmployeeEntity> getAll();
 
-    public Employee createEmployee(Employee employee);
+    public EmployeeEntity createEmployee(EmployeeEntity employee);
 }

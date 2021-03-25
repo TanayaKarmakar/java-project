@@ -1,11 +1,13 @@
-package com.app.emp.domain;
+package com.app.emp.entity;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import org.springframework.data.annotation.Id;
 
-@Container(containerName = "emp")
-public class Employee {
+import java.util.List;
+
+@Container(containerName = "customer")
+public class CustomerEntity {
     @Id
     private String id;
     private Long customerId;
@@ -13,6 +15,7 @@ public class Employee {
 
     @PartitionKey
     private String city;
+    private List<OrderEntity> orders;
 
     public String getId() {
         return id;
@@ -44,5 +47,13 @@ public class Employee {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 }

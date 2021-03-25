@@ -1,7 +1,6 @@
 package com.app.emp.controller;
 
-import com.app.emp.domain.Order;
-import com.azure.core.annotation.Post;
+import com.app.emp.entity.OrderEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,17 +9,17 @@ import java.util.List;
 @RequestMapping("/api/v1/customers/{id}/orders")
 public class OrderController {
     @GetMapping
-    public List<Order> getOrdersByCustomer(@PathVariable String id) {
+    public List<OrderEntity> getOrdersByCustomer(@PathVariable String id) {
         return null;
     }
 
     @PostMapping
-    public Order createNewOrder(@PathVariable String id, @RequestBody Order order) {
+    public OrderEntity createNewOrder(@PathVariable String id, @RequestBody OrderEntity order) {
         return null;
     }
 
     @PutMapping
-    public Order updateOrder(@PathVariable String id, @RequestBody Order order) {
+    public OrderEntity updateOrder(@PathVariable String id, @RequestBody OrderEntity order) {
         return null;
     }
 

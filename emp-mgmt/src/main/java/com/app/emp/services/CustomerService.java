@@ -1,17 +1,18 @@
 package com.app.emp.services;
 
-import com.app.emp.domain.Customer;
+import com.app.emp.bo.Customer;
+import com.app.emp.entity.CustomerEntity;
 
 import java.util.List;
 
 public interface CustomerService {
-    List<Customer> getAllCustomers();
+    List<CustomerEntity> getAllCustomers();
 
-    Customer createCustomer(Customer customer);
+    //Customer createCustomer(Customer customer);
 
-    Customer getCustomerById(String id);
+    CustomerEntity getCustomerById(String id);
 
-    Customer updateCustomer(Customer customer);
+    CustomerEntity updateCustomer(CustomerEntity customer);
 
     void deleteCustomer(String id);
 }

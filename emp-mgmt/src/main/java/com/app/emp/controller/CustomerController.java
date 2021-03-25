@@ -1,8 +1,16 @@
 package com.app.emp.controller;
 
-import com.app.emp.domain.Customer;
+import com.app.emp.bo.Customer;
+import com.app.emp.common.request.CustomerRequest;
+import com.app.emp.common.request.ServiceRequest;
+import com.app.emp.common.response.CustomerResponse;
+import com.app.emp.common.response.ServiceResponse;
+import com.app.emp.entity.CustomerEntity;
+import com.app.emp.mappers.CustomerBOResponseMapper;
+import com.app.emp.mappers.CustomerRequestBOMapper;
 import com.app.emp.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,24 +21,36 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private CustomerRequestBOMapper customerRequestBOMapper;
+//
+//    @Autowired
+//    private CustomerBOResponseMapper customerBOResponseMapper;
+
     @GetMapping
-    public List<Customer> getAllCustomers() {
+    public List<CustomerEntity> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
-    @PostMapping
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
-    }
+//    @PostMapping
+//    public ServiceResponse<CustomerResponse> createCustomer(@RequestBody ServiceRequest<CustomerRequest> serviceRequest) {
+//        CustomerRequest customerRequest = serviceRequest.getPayload();
+//        Customer customer = customerService.createCustomer(customerRequestBOMapper.dtoToBo(customerRequest));
+//        ServiceResponse<CustomerResponse> serviceResponse = new ServiceResponse<>();
+//        serviceResponse.setStatus(HttpStatus.CREATED);
+//        serviceResponse.setResponsePayload(customerBOResponseMapper.boToResponse(customer));
+//
+//        return serviceResponse;
+//    }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@PathVariable String id) {
+    public CustomerEntity getCustomerById(@PathVariable String id) {
         return customerService.getCustomerById(id);
     }
 
     //snapshot update
     @PutMapping
-    public Customer updateCustomer(@RequestBody Customer customer) {
+    public CustomerEntity updateCustomer(@RequestBody CustomerEntity customer) {
         return customerService.updateCustomer(customer);
     }
 

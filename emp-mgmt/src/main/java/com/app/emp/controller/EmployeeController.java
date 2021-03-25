@@ -1,6 +1,6 @@
 package com.app.emp.controller;
 
-import com.app.emp.domain.Employee;
+import com.app.emp.entity.EmployeeEntity;
 import com.app.emp.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,12 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeEntity> getAllEmployees() {
         return employeeService.getAll();
     }
 
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
+    public EmployeeEntity createEmployee(@RequestBody EmployeeEntity employee) {
         return employeeService.createEmployee(employee);
     }
 }

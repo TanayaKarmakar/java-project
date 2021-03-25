@@ -1,21 +1,14 @@
-package com.app.emp.domain;
+package com.app.emp.common.request;
 
-import com.azure.spring.data.cosmos.core.mapping.Container;
-import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
-@Container(containerName = "customer")
-public class Customer {
-    @Id
+public class CustomerRequest {
     private String id;
     private Long customerId;
     private String name;
-
-    @PartitionKey
     private String city;
-    private List<Order> orders;
+    private List<OrderRequest> orders;
 
     public String getId() {
         return id;
@@ -49,11 +42,11 @@ public class Customer {
         this.city = city;
     }
 
-    public List<Order> getOrders() {
+    public List<OrderRequest> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(List<OrderRequest> orders) {
         this.orders = orders;
     }
 }

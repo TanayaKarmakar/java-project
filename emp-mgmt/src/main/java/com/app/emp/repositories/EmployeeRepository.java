@@ -1,7 +1,7 @@
 package com.app.emp.repositories;
 
-import com.app.emp.domain.Employee;
+import com.app.emp.entity.EmployeeEntity;
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 
-public interface EmployeeRepository extends CosmosRepository<Employee, String> {
+public interface EmployeeRepository extends CosmosRepository<EmployeeEntity, String> {
 }

@@ -1,8 +1,10 @@
 package com.app.emp.services.impl;
 
-import com.app.emp.domain.Customer;
+import com.app.emp.bo.Customer;
+import com.app.emp.entity.CustomerEntity;
 import com.app.emp.exception.EntityNotFoundException;
 import com.app.emp.exception.ErrorKeyCodes;
+import com.app.emp.mappers.CustomerBOEntityMapper;
 import com.app.emp.repositories.CustomerRepository;
 import com.app.emp.services.CustomerService;
 import com.azure.cosmos.models.PartitionKey;
@@ -19,10 +21,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+//    @Autowired
+//    private CustomerBOEntityMapper customerBOEntityMapper;
+
     @Override
-    public List<Customer> getAllCustomers() {
-        Iterator<Customer> custItr = customerRepository.findAll().iterator();
-        List<Customer> customers = new ArrayList<>();
+    public List<CustomerEntity> getAllCustomers() {
+        Iterator<CustomerEntity> custItr = customerRepository.findAll().iterator();
+        List<CustomerEntity> customers = new ArrayList<>();
 
         while(custItr.hasNext()) {
             customers.add(custItr.next());
@@ -31,26 +36,30 @@ public class CustomerServiceImpl implements CustomerService {
         return customers;
     }
 
-    @Override
-    public Customer createCustomer(Customer customer) {
-        customer.setId(UUID.randomUUID().toString());
-        return customerRepository.save(customer);
-    }
+//    @Override
+//    public Customer createCustomer(Customer customer) {
+//        CustomerEntity customerEntity = customerBOEntityMapper.boToEntity(customer);
+//        customerEntity.setId(UUID.randomUUID().toString());
+//        customerRepository.save(customerEntity);
+//
+//        return customerBOEntityMapper.entityToBo(customerEntity);
+//    }
+
 
     @Override
-    public Customer getCustomerById(String id) {
+    public CustomerEntity getCustomerById(String id) {
         return customerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorKeyCodes.NOT_FOUND));
     }
 
     @Override
-    public Customer updateCustomer(Customer customer) {
+    public CustomerEntity updateCustomer(CustomerEntity customer) {
         return customerRepository.save(customer);
     }
 
 
     @Override
     public void deleteCustomer(String id) {
-        Customer customer = getCustomerById(id);
+        CustomerEntity customer = getCustomerById(id);
         customerRepository.deleteById(id, new PartitionKey(customer.getCity()));
     }
 }

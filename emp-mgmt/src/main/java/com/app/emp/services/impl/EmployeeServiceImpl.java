@@ -1,6 +1,6 @@
 package com.app.emp.services.impl;
 
-import com.app.emp.domain.Employee;
+import com.app.emp.entity.EmployeeEntity;
 import com.app.emp.repositories.EmployeeRepository;
 import com.app.emp.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
     @Override
-    public List<Employee> getAll() {
-        List<Employee> employees = new ArrayList<>();
-        Iterator<Employee> empItr = employeeRepository.findAll().iterator();
+    public List<EmployeeEntity> getAll() {
+        List<EmployeeEntity> employees = new ArrayList<>();
+        Iterator<EmployeeEntity> empItr = employeeRepository.findAll().iterator();
         while(empItr.hasNext()) {
             employees.add(empItr.next());
         }
@@ -27,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee createEmployee(Employee employee) {
+    public EmployeeEntity createEmployee(EmployeeEntity employee) {
         employee.setId(UUID.randomUUID().toString());
         return employeeRepository.save(employee);
     }
