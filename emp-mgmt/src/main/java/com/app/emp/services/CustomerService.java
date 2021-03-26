@@ -6,13 +6,13 @@ import com.app.emp.entity.CustomerEntity;
 import java.util.List;
 
 public interface CustomerService {
-    List<CustomerEntity> getAllCustomers();
+    List<Customer> getAllCustomers();
 
-    //Customer createCustomer(Customer customer);
+    Customer createCustomer(Customer customer);
 
     CustomerEntity getCustomerById(String id);
 
-    CustomerEntity updateCustomer(CustomerEntity customer);
+    Customer updateCustomer(Customer customer);
 
     void deleteCustomer(String id);
 }

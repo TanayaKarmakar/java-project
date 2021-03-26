@@ -21,29 +21,29 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-//    @Autowired
-//    private CustomerBOEntityMapper customerBOEntityMapper;
+    @Autowired
+    private CustomerBOEntityMapper customerBOEntityMapper;
 
     @Override
-    public List<CustomerEntity> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         Iterator<CustomerEntity> custItr = customerRepository.findAll().iterator();
-        List<CustomerEntity> customers = new ArrayList<>();
+        List<Customer> customers = new ArrayList<>();
 
         while(custItr.hasNext()) {
-            customers.add(custItr.next());
+            customers.add(customerBOEntityMapper.entityToBo(custItr.next()));
         }
 
         return customers;
     }
 
-//    @Override
-//    public Customer createCustomer(Customer customer) {
-//        CustomerEntity customerEntity = customerBOEntityMapper.boToEntity(customer);
-//        customerEntity.setId(UUID.randomUUID().toString());
-//        customerRepository.save(customerEntity);
-//
-//        return customerBOEntityMapper.entityToBo(customerEntity);
-//    }
+    @Override
+    public Customer createCustomer(Customer customer) {
+        CustomerEntity customerEntity = customerBOEntityMapper.boToEntity(customer);
+        customerEntity.setId(UUID.randomUUID().toString());
+        customerRepository.save(customerEntity);
+
+        return customerBOEntityMapper.entityToBo(customerEntity);
+    }
 
 
     @Override
@@ -52,8 +52,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerEntity updateCustomer(CustomerEntity customer) {
-        return customerRepository.save(customer);
+    public Customer updateCustomer(Customer customer) {
+        CustomerEntity customerEntity = customerBOEntityMapper.boToEntity(customer);
+        customerRepository.save(customerEntity);
+        return customerBOEntityMapper.entityToBo(customerEntity);
     }
 
 
